@@ -1,0 +1,104 @@
+/* Animated gradient background */
+.gradient-background {
+    background: linear-gradient(234deg, #14005d, #003b5e, #000969, #006967, #0e74a3, #14005d);
+    background-size: 300% 300%;
+    animation: gradient-animation 15s ease infinite;
+}
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Page body with animated background */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom right, #112b53, #020911);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Apply padding to all elements */
+* {
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Enhanced glass-effect container */
+.container {
+    background: rgba(255, 255, 255, 0.08);
+    border: 10px solid rgba(255, 255, 255, 0.25);
+    border-radius: 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(16px);
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+    transition: all 0.3s ease;
+    position: absolute;
+    inset: 0;
+    height: 200%;
+    mask-image: linear-gradient(to bottom, black 0% 50%, transparent 50% 100%);
+}
+
+/* Side-by-side layout for corpus and result */
+.flex-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Each panel takes half width */
+.panel {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* Fully transparent text areas */
+textarea {
+    width: 100%;
+    height: 250px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    resize: vertical;
+    border-radius: 8px;
+}
+
+/* Make the left panel (corpus input) textarea larger */
+.panel:first-child textarea {
+    height: 400px;
+}
+
+/* Button styles */
+button {
+    margin-top: 10px;
+    padding: 15px 30px;
+    background-color: #1a8bb8c7;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background-color: #1aa34a;
+}

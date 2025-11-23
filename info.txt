@@ -1,0 +1,45 @@
+
+Voice Search Web App - Setup Instructions
+
+Requirements:
+- Python version: 3.8 to 3.10 (Not compatible with Python 3.11+)
+- Internet connection (only for the first-time model and NLTK downloads)
+- Windows OS recommended (due to `sounddevice` behavior)
+
+Project Structure:
+voice_search_project_2/
+├── api.py
+├── save_model.py
+├── requirements.txt
+├── info.txt
+├── model/                 <-- Contains Wav2Vec2 model & processor
+├── nltk_data/             <-- NLTK tokenizers (punkt, stopwords)
+├── static/
+│   └── style.css          <-- CSS file
+├── templates/
+│   └── app.html           <-- HTML frontend
+
+Setup:
+
+1. Install dependencies:
+    pip install -r requirements.txt
+
+2. Make sure model is saved locally:
+   If `model/` folder doesn't exist, run once:
+    python save_model.py
+
+   > This saves the Wav2Vec2 model and processor to `model/`.
+
+3. Run the API server:
+    uvicorn api:app --reload
+
+4. Open the app in browser:
+    http://127.0.0.1:8000
+
+Notes:
+- First-time use may download NLTK data into `nltk_data/` folder.
+- Do not delete `model/` or `nltk_data/`.
+- If you move this project to a new PC:
+  - Reinstall with `pip install -r requirements.txt`
+  - Ensure Python version is below 3.11
+  - Use `uvicorn api:app --reload` to run

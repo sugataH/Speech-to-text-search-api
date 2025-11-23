@@ -1,0 +1,102 @@
+# -------------------------------
+# MODEL FILES (Wav2Vec2, HF models)
+# -------------------------------
+*.bin
+*.pt
+pytorch_model.bin
+tf_model.h5
+tokenizer.json
+special_tokens_map.json
+vocab.json
+merges.txt
+config.json
+training_args.bin
+model.safetensors
+
+# Entire model directories
+model/
+models/
+checkpoints/
+snapshots/
+runs/
+**/wav2vec*/
+**/wav2vec2*/
+
+# HuggingFace cache
+~/.cache/huggingface/
+huggingface/
+cache/
+cache_dir/
+
+# -------------------------------
+# PYTHON CACHE / BUILD FILES
+# -------------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pkl
+*.so
+
+# Byte-compiled / optimized / DLL files
+*.dll
+*.dylib
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# -------------------------------
+# VIRTUAL ENVIRONMENTS
+# -------------------------------
+venv/
+env/
+.venv/
+ENV/
+env.bak/
+
+# -------------------------------
+# FASTAPI / UVICORN LOGS
+# -------------------------------
+*.log
+*.pid
+*.sqlite3
+
+# -------------------------------
+# EDITORS / IDE FILES
+# -------------------------------
+.vscode/
+.idea/
+*.iml
+
+# -------------------------------
+# OS JUNK FILES
+# -------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# -------------------------------
+# ENVIRONMENT & SECRETS
+# -------------------------------
+.env
+*.env
+.env.*
+secrets.json
+
+# -------------------------------
+# NODE / FRONTEND (if any web UI)
+# -------------------------------
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# -------------------------------
+# MISC
+# -------------------------------
+*.tmp
+*.temp
+*.swp

@@ -1,0 +1,12 @@
+ 
+fastapi
+uvicorn
+sounddevice
+scipy
+torch
+transformers
+nltk
+numpy
+soundfile
+jinja2
+python-multipart

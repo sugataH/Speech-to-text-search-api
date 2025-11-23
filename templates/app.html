@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Voice Search App</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="gradient-background">
+    <div class="container">
+        <h1>Voice to Text Search System</h1>
+        <div class="flex-row">
+            <!-- Corpus Input -->
+            <div class="panel">
+                <h3>Enter Corpus</h3>
+                <form id="corpusForm">
+                    <textarea id="corpusInput" name="corpus_text" placeholder="Paste your corpus here..." rows="10"></textarea>
+                    <button type="submit">Submit Corpus</button>
+                </form>
+                <p id="corpusMessage"></p>
+            </div>
+
+            <!-- Voice Recording & Results -->
+            <div class="panel">
+                <h3>Search & Transcription</h3>
+                <form id="recordForm">
+                    <button id="recordBtn" type="submit">Record & Search</button>
+                </form>
+                <textarea id="resultBox" readonly placeholder="Results will appear here..." rows="10"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Submit Corpus Form
+        document.getElementById("corpusForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+            const corpusText = document.getElementById("corpusInput").value.trim();
+
+            if (!corpusText) {
+                document.getElementById("corpusMessage").innerText = "❗ Please enter some corpus text.";
+                return;
+            }
+
+            const response = await fetch("/submit-corpus/", {
+                method: "POST",
+                body: new URLSearchParams({ corpus_text: corpusText }),
+                headers: { "Content-Type": "application/x-www-form-urlencoded" }
+            });
+
+            const data = await response.json();
+            document.getElementById("corpusMessage").innerText = data.message || "Corpus submitted.";
+        });
+
+        // Record and Search
+        document.getElementById("recordForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+            const resultBox = document.getElementById("resultBox");
+            resultBox.value = "🎤 Recording and searching...";
+
+            try {
+                const response = await fetch('/record-and-search/');
+                const data = await response.json();
+
+                if (data.matched_results) {
+                    resultBox.value = "📝 Transcription:\n" + data.transcription +
+                        "\n\n🔍 Top Matches:\n" + data.matched_results.map(m => `- ${m}`).join("\n");
+                } else if (data.error) {
+                    resultBox.value = "❌ Error: " + data.error;
+                } else {
+                    resultBox.value = "❓ Unexpected response:\n" + JSON.stringify(data);
+                }
+
+            } catch (error) {
+                console.error("Fetch error:", error);
+                resultBox.value = "⚠️ Something went wrong while searching.";
+            }
+        });
+    </script>
+</body>
+</html>
